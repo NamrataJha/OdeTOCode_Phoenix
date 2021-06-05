@@ -46,10 +46,13 @@ def recognize_speech_from_mic(recognizer, microphone):
 
     return response
 
-r = sr.Recognizer()
-m = sr.Microphone()
-print("speak")
-res = recognize_speech_from_mic(r, m)
-print("stop")
-print(res)
+def record():
+    r = sr.Recognizer()
+    m = sr.Microphone()
+    print("speak")
+    res = recognize_speech_from_mic(r, m)
+    print("stop")
+    return res
 
+aud = record()
+print(aud)
