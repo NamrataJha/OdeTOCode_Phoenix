@@ -6,7 +6,7 @@ from speech_recognition import AudioFile
 
 from .serializers import requestSerializer
 
-from .functions import speechRecogTry
+from .functions import audioToText
 
 class api_callView(views.APIView):
 
@@ -25,7 +25,17 @@ class api_callView(views.APIView):
         options = request.data["options"]
         audio = request.data["audio"]
 
-        
+        transcript = audioToText.speechToTranscript(audio)
+
+        #Function to process
+
+        result = {
+            "transcript" : transcript
+        }
+
+        return Response(result,status=status.HTTP_200_OK)
+
+
     
         
 
@@ -33,5 +43,6 @@ class api_callView(views.APIView):
 
 
 def index(request):
+    
     return render(request, 'index.html')
 
